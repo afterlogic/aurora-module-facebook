@@ -121,7 +121,7 @@ CFacebookSettingsFormView.prototype.connect = function (aScopes)
 	$.cookie('oauth-redirect', 'connect');
 	this.bRunCallback = false;
 	var
-		oWin = WindowOpener.open(UrlUtils.getAppPath() + '?oauth=facebook', 'Facebook'),
+		oWin = WindowOpener.open(UrlUtils.getAppPath() + '?oauth=facebook-connect', 'Facebook'),
 		iIntervalId = setInterval(_.bind(function() {
 			if (oWin.closed)
 			{
