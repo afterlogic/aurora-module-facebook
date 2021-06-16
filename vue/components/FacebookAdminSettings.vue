@@ -16,13 +16,13 @@
             </q-item>
           </div>
           <div class="row q-mb-md q-ml-md">
-            <div class="col-1 q-my-sm q-ml-sm required-field" v-t="'OAUTHINTEGRATORWEBCLIENT.LABEL_APP_ID'"></div>
+            <div class="col-1 q-my-sm q-ml-md required-field" v-t="'OAUTHINTEGRATORWEBCLIENT.LABEL_APP_ID'"></div>
             <div class="col-5 q-ml-xl">
               <q-input outlined dense class="bg-white" v-model="appId"/>
             </div>
           </div>
           <div class="row q-mb-md q-ml-md">
-            <div class="col-1 q-my-sm q-ml-sm required-field" v-t="'OAUTHINTEGRATORWEBCLIENT.LABEL_APP_SECRET'"></div>
+            <div class="col-1 q-my-sm q-ml-md required-field" v-t="'OAUTHINTEGRATORWEBCLIENT.LABEL_APP_SECRET'"></div>
             <div class="col-5 q-ml-xl">
               <q-input outlined dense class="bg-white" v-model="appSecret"/>
             </div>
@@ -55,21 +55,20 @@
 
 <script>
 import UnsavedChangesDialog from 'src/components/UnsavedChangesDialog'
-import settings from "../../../Facebook/vue/settings";
-import webApi from "../../../AdminPanelWebclient/vue/src/utils/web-api";
-import notification from "../../../AdminPanelWebclient/vue/src/utils/notification";
-import errors from "../../../AdminPanelWebclient/vue/src/utils/errors";
-import _ from "lodash";
+import settings from '../../../Facebook/vue/settings'
+import webApi from 'src/utils/web-api'
+import notification from 'src/utils/notification'
+import errors from 'src/utils/errors'
+import _ from 'lodash';
 
 export default {
-  name: "FacebookAdminSettings",
+  name: 'FacebookAdminSettings',
   components: {
     UnsavedChangesDialog
   },
-  data() {
+  data () {
     return {
       saving: false,
-      
       enableFacebook: false,
       auth: false,
       appId: '',
@@ -77,10 +76,10 @@ export default {
       scopes: []
     }
   },
-  mounted() {
+  mounted () {
     this.populate()
   },
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave (to, from, next) {
     if (this.hasChanges() && _.isFunction(this?.$refs?.unsavedChangesDialog?.openConfirmDiscardChangesDialog)) {
       this.$refs.unsavedChangesDialog.openConfirmDiscardChangesDialog(next)
     } else {
@@ -88,11 +87,9 @@ export default {
     }
   },
   methods: {
-    hasChanges() {
+    hasChanges () {
       const data = settings.getFacebookSettings()
-    
       let hasChangesScopes = false
-    
       this.scopes.forEach((scope) => {
         if (!hasChangesScopes) {
           if (scope.Name === 'auth') {
@@ -100,33 +97,31 @@ export default {
           }
         }
       })
-    
       return this.enableFacebook !== data.EnableModule ||
           this.appId !== data.Id ||
           hasChangesScopes ||
           this.appSecret !== data.Secret
     },
-    populate() {
+    populate () {
       const data = settings.getFacebookSettings()
       this.enableFacebook = data.EnableModule
       this.appId = data.Id
       this.scopes = data.Scopes
       this.appSecret = data.Secret
-    
       this.scopes.forEach((scope) => {
         if (scope.Name === 'auth') {
           this.auth = scope.Value
         }
       })
     },
-    saveFacebookSettings() {
+    saveFacebookSettings () {
       if (this.appId && this.appSecret) {
         this.save()
       } else {
         notification.showError(this.$t('MAILWEBCLIENT.ERROR_REQUIRED_FIELDS_EMPTY'))
       }
     },
-    save() {
+    save () {
       if (!this.saving) {
         this.saving = true
         this.scopes.forEach((scope) => {
@@ -134,7 +129,6 @@ export default {
             scope.Value = this.auth
           }
         })
-      
         const parameters = {
           EnableModule: this.enableFacebook,
           Id: this.appId,
