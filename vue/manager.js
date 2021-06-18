@@ -1,14 +1,18 @@
 import settings from '../../Facebook/vue/settings'
 
 export default {
-  name: 'FacebookWebclient',
+  moduleName: 'Facebook',
+
+  requiredModules: [],
+
   init (appData) {
     settings.init(appData)
   },
+
   getAdminSystemTabs () {
     return [
       {
-        name: 'facebook',
+        tabName: 'facebook',
         title: 'FACEBOOK.LABEL_SETTINGS_TAB',
         component () {
           return import('src/../../../Facebook/vue/components/FacebookAdminSettings')
