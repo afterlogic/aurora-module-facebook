@@ -6,12 +6,12 @@ class FacebookSettings {
   constructor (appData) {
     const facebookWebclientData = typesUtils.pObject(appData.Facebook)
     if (!_.isEmpty(facebookWebclientData)) {
-      this.displayName = facebookWebclientData.DisplayName
-      this.enableModule = facebookWebclientData.EnableModule
-      this.id = facebookWebclientData.Id
-      this.name = facebookWebclientData.Name
-      this.scopes = facebookWebclientData.Scopes
-      this.secret = facebookWebclientData.Secret
+      this.displayName = typesUtils.pString(facebookWebclientData.DisplayName)
+      this.enableModule = typesUtils.pBool(facebookWebclientData.EnableModule)
+      this.id = typesUtils.pInt(facebookWebclientData.Id)
+      this.name = typesUtils.pString(facebookWebclientData.Name)
+      this.scopes = typesUtils.pArray(facebookWebclientData.Scopes)
+      this.secret = typesUtils.pString(facebookWebclientData.Secret)
     }
   }
 
