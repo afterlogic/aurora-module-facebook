@@ -8,7 +8,7 @@ class FacebookSettings {
     if (!_.isEmpty(facebookWebclientData)) {
       this.displayName = typesUtils.pString(facebookWebclientData.DisplayName)
       this.enableModule = typesUtils.pBool(facebookWebclientData.EnableModule)
-      this.id = typesUtils.pInt(facebookWebclientData.Id)
+      this.id = typesUtils.pString(facebookWebclientData.Id)
       this.name = typesUtils.pString(facebookWebclientData.Name)
       this.scopes = typesUtils.pArray(facebookWebclientData.Scopes)
       this.secret = typesUtils.pString(facebookWebclientData.Secret)
