@@ -97,17 +97,17 @@ export default {
           }
         }
       })
-      return this.enableFacebook !== data.EnableModule ||
-          this.appId !== data.Id ||
+      return this.enableFacebook !== data.enableModule ||
+          this.appId !== data.id ||
           hasChangesScopes ||
-          this.appSecret !== data.Secret
+          this.appSecret !== data.secret
     },
     populate () {
       const data = settings.getFacebookSettings()
-      this.enableFacebook = data.EnableModule
-      this.appId = data.Id
-      this.scopes = data.Scopes
-      this.appSecret = data.Secret
+      this.enableFacebook = data.enableModule
+      this.appId = data.id
+      this.scopes = data.scopes
+      this.appSecret = data.secret
       this.scopes.forEach((scope) => {
         if (scope.Name === 'auth') {
           this.auth = scope.Value
