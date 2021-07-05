@@ -15,7 +15,7 @@ export default {
         tabName: 'facebook',
         title: 'FACEBOOK.LABEL_SETTINGS_TAB',
         component () {
-          return import('src/../../../Facebook/vue/components/FacebookAdminSettings')
+          return import('./components/FacebookAdminSettings')
         },
       },
     ]
