@@ -13,10 +13,10 @@ export default {
     return [
       {
         tabName: 'facebook',
-        title: 'FACEBOOK.LABEL_SETTINGS_TAB',
-        component () {
-          return import('./components/FacebookAdminSettings')
-        },
+        tabTitle: 'FACEBOOK.LABEL_SETTINGS_TAB',
+        tabRouteChildren: [
+          { path: 'facebook', component: () => import('./components/FacebookAdminSettings') },
+        ],
       },
     ]
   },
